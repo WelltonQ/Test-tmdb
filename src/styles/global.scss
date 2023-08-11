@@ -1,0 +1,27 @@
+:root {
+    --pink-600: #E73980;
+    --pink-900: #861040;
+    --gray-500: #646464;
+    --gray-700: #323232;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: white;
+    overflow-x: hidden;
+
+    .content {
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 0 50px;
+    }
+}
+
+h1, h2, h3, h4, h5, h6, span, p, button, input, div {
+    font-family: 'Roboto', sans-serif;
+}

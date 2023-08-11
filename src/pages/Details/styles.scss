@@ -1,0 +1,67 @@
+.details {
+    display: flex;
+    
+
+    img {
+        height: 450px;
+        // width: 383px;
+        object-fit: cover;
+        border-radius: 8px;
+        margin-top: 50px;
+    }
+
+    .resume {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start;
+        color: white;
+        margin-left: 30px;
+
+        h1 {
+            font-size: 32px;
+        }
+
+        span {
+            font-size: 18px;
+            font-weight: normal;
+        }
+        
+        span.rating {
+            font-size: 16px;
+        }
+
+        .box {
+            width: 70;
+            height: 70;
+        }
+
+        h3 {
+            margin: 20px 0 10px;
+        }
+
+        .description {
+            font-size: 16px;
+        }
+
+        .characters {
+            display: flex;
+            flex-wrap: wrap;
+            width: 100%;
+            gap: 15px 100px;
+            margin-top: 30px;
+
+            .person {
+                max-width: 174px;
+            }
+        }
+    }
+}
+
+.cardsCastRow {
+    width: 100%;
+    overflow: auto;
+    display: flex;
+    margin-top: 50px !important;
+    gap: 20px;
+}
