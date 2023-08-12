@@ -2,9 +2,20 @@ import './styles.scss'
 
 import { Card } from "../../components/Card";
 import { Header } from "../../components/Header";
+// import { useState } from 'react';
 
 
 export function Home() {
+  // const [selectedGenres, setSelectedGenres] = useState<number[]>([])
+
+  // const toggleGenre = (genre: number) => {
+  //   if (selectedGenres.includes(genre)) {
+  //     setSelectedGenres(selectedGenres.filter((item) => item !== genre));
+  //   } else {
+  //     setSelectedGenres([...selectedGenres, genre]);
+  //   }
+  // };
+
   return (
     <>
       <Header />

@@ -1,11 +1,22 @@
+import { useState, useEffect } from 'react'
 import { Header } from '../../components/Header'
 import './styles.scss'
 import homem from '../../assets/imageH.png'
 import imageT from '../../assets/imageT.png'
 import { CardCast } from '../../components/CardCast'
 import { Card } from '../../components/Card'
+import { api } from '../../components/services/api'
+import { useParams } from 'react-router-dom'
 
-export function Details() {
+export function Movie() {
+    const [movie, setMovie] = useState({})
+    const { id } = useParams()
+
+    useEffect(() => {
+        api.get(`/${id}`)
+        .then(response => setMovie(response.data))
+    }, [])
+
   return (
     <>
         <Header />
