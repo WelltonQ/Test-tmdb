@@ -1,13 +1,15 @@
 import { Header } from '../../components/Header'
 import './styles.scss'
 import homem from '../../assets/imageH.png'
+import imageT from '../../assets/imageT.png'
 import { CardCast } from '../../components/CardCast'
+import { Card } from '../../components/Card'
 
 export function Details() {
   return (
     <>
         <Header />
-        <section className='banner'>
+        <section className='bannerDetails'>
             <div className="details content">
                 <img src={homem} alt="Capa do filme" />
                 <div className="resume">
@@ -52,11 +54,24 @@ export function Details() {
                 </div>  
             </div>    
         </section>
-        <section className='cardsCast'>
-            <div className='cardsCastRow content'>
-                <CardCast />
-            </div>
-        </section>
+        <div className='content'>
+            <section className='cardsCast'>
+                <h2>Elenco original</h2>
+                <div className="cardsCastRow">
+                    <CardCast />
+                </div>
+            </section>
+            <section className='trailer'>
+                <h2>Trailer</h2>
+                <img src={imageT} alt="Trailer" />
+            </section>
+            <section className='recommendations'>
+                <h2>Recomendações</h2>
+                <div className='recommendationsCards'>
+                    <Card />
+                </div>
+            </section>
+        </div>
     </>
   )
 }

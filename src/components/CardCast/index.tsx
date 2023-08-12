@@ -12,7 +12,7 @@ export function CardCast() {
         <div className="cardCast">
           <img src={image2} alt="Rosto do ator/atriz" />
           <p>Ryan Reynolds</p>
-          <span>Wade Wilson / Deadpool</span>
+          <span>Wade Wilson / Deadpoolgddfs</span>
         </div>
         <div className="cardCast">
           <img src={image2} alt="Rosto do ator/atriz" />
