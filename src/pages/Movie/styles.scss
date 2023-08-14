@@ -1,3 +1,5 @@
+$component-name: "circular-progress";
+
 .bannerDetails {
     background-color: var(--pink-900);
     height: 450px;
@@ -35,11 +37,47 @@
             span.rating {
                 font-size: 16px;
             }
+            
+            
+            .container-circular {
+                display: flex;
+                align-items: center;
+                margin: 20px 0 0;
+                gap: 15px;
 
-            .box {
-                width: 70;
-                height: 70;
+                > span {
+                max-width: 120px;
+
+                }
             }
+
+            .circular-progress {
+                position: relative;
+                height: 60px;
+                width: 60px;
+                border-radius: 50%;
+                background: conic-gradient(#14FF00 250deg, #922853 0deg);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    height: 50px;
+                    width: 50px;
+                    border-radius: 50%;
+                    background-color: #922853;
+                }
+
+                .progress-value {
+                    position: relative;
+                    color: #14FF00;
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+            }
+
 
             h3 {
                 margin: 20px 0 10px;
@@ -118,6 +156,33 @@
         margin-bottom: 50px !important;
         margin-left: -5px !important;
 
+        .cardCast {
+            width: 191px;
+            height: 336px;
+            padding: 8px;
+            background-color: white;
+            border-radius: 4px;
+            box-shadow: 0 4px 4px rgb(0 0 0 / 0.25);
+            
+            img {
+                width: 175px;
+                height: 222px;
+                object-fit: cover;
+                border-radius: 4px;
+            }
+        
+            .name {
+                font-size: 18px;
+                display: block;
+                font-weight: bold;
+                margin: 10px 0;
+            }
+            
+            .character {
+                font-size: 16px;        
+            }
+        }
+
     }
 
     @media screen and (max-width: 767px) {
@@ -132,21 +197,80 @@
         margin: 20px 0;
     }
 
-    img {
-        width: 100%;
+    iframe {
+        display: flex;
+        margin: 0 auto;
+        border: 0;
+        border-radius: 10px;
     }
 }
 
 .recommendations {
+    margin-bottom: 50px;
+
     h2 {
-        margin: 30px 0 20px;
+        margin: 40px 0 20px;
     }
 
     .recommendationsCards {
+        ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+            column-gap: 1rem;
+            row-gap: 3rem;
+        }
+    
+        li {
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+    
+            a {
+                text-decoration: none;
+                color: black;
+                transition: all 0.3s;
+                
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+    
+            img {
+                width: 176px;
+                object-fit: cover;
+                border-radius: 4px;
+            }
+    
+            h2 {
+                font-size: 16px;
+                margin: 10px 0 5px;
+                max-width: 176px;
+            }
+        
+            span {
+                font-size: 14px;
+                color: var(--gray-500);
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    .backHome {
         display: flex;
-        justify-content: space-between;
-        align-content: flex-start;
-        flex-wrap: wrap;
-        gap: 0 16px;
+        justify-content: center;
+        text-decoration: none;
+        margin: 60px auto;        
+        padding: 20px;
+        background-color: var(--gray-500);
+        color: white;
+        max-width: 300px;
+        border-radius: 8px;
+        transition: 0.2s;
+
+        &:hover {
+            opacity: 0.9;
+        }
     }
 }
