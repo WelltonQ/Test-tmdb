@@ -15,8 +15,11 @@
 
 O desafio proposto consiste em criar uma aplicação usando a API de filmes gratuita themoviedb em sua versão 3. Possui duas páginas: Home e Movie. 
 - A página Home é responsável por listar todos os filmes populares do dia, incluindo funcionalidades como filtros através do gênero selecionado e paginação para encontrar novos filmes. É possível clicar no filme para ser direcionado para a página de Movie.
-- A página Movie consiste em todos os detalhes sobre o filme selecionado, contém informações como titulo, data de lançamento, gêneros, duração, avaliação dos usuários, sinopse e equipe. Além disso, existe a seção do elenco original com foto e nome de cada, seção trailer com o vídeo e seção recomendações listando os filmes recomendados para o usuário.
+- A página Movie consiste em todos os detalhes sobre o filme selecionado, contém informações como título, data de lançamento, gêneros, duração, avaliação dos usuários, sinopse e equipe. Além disso, existe a seção do elenco original com foto e nome de cada, seção trailer com o vídeo e seção recomendações listando os filmes recomendados para o usuário.
 - A aplicação está responsiva para uso mobile, tablet e desktop.
+
+## 🌍 Acesse pelo navegador
+- https://filmes-tmdb-uhuu.vercel.app
 
 ## 🛠 Tecnologias
 
@@ -56,7 +59,7 @@ VITE_API=https://api.themoviedb.org/3/
 VITE_IMG=https://image.tmdb.org/t/p/w500/
 ```
 
-Obs: A key `VITE_API_KEY=api_key` é a key que foi gerado na API TMDB, essa key ficará disponível temporariamente, depois irei alterar. Surgiro que faça o cadastro gratuito no site [TMDB](https://www.themoviedb.org/?language=pt-BR) e gere uma nova key.
+Obs: A key `VITE_API_KEY=api_key` é a key que foi gerada na API TMDB, essa key ficará disponível temporariamente, depois irei alterar. Sugiro que faça o cadastro gratuito no site [TMDB](https://www.themoviedb.org/?language=pt-BR) e gere uma nova key.
 
 ---
 
