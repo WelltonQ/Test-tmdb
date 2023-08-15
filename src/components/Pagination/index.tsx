@@ -1,4 +1,4 @@
-
+import './styles.scss'
 interface PaginationTypes {
     handleCurrentPage: (page: number) => void;
     currentPage: number

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { format } from 'date-fns'
-import pt from 'date-fns/locale/pt';
 
 import './styles.scss'
 import avatar from '../../assets/avatar.svg'
 import { Header } from '../../components/Header'
 import { api } from '../../services/api'
+import { Card } from '../../components/Card';
 
 const apiKey = import.meta.env.VITE_API_KEY
 const imageUrl = import.meta.env.VITE_IMG
@@ -25,6 +25,7 @@ interface MovieType {
     overview: string
     poster_path: string
     year: number
+    vote_average: string
 }
 
 interface TrailerType {
@@ -58,6 +59,8 @@ export function Movie() {
                 const response = await api.get(`/movie/${id}?${apiKey}&language=pt-BR`);
                 const hours = Math.floor(response.data.runtime / 60)
                 const minutes = response.data.runtime % 60
+                const userRating = Math.ceil(response.data.vote_average * 100)
+
                 const movie = {
                     id,
                     title: response.data.title,
@@ -66,7 +69,8 @@ export function Movie() {
                     runtime: `${hours}h ${minutes}m`,
                     overview: response.data.overview,
                     poster_path: response.data.poster_path,
-                    year: new Date(response.data.release_date).getFullYear()
+                    year: new Date(response.data.release_date).getFullYear(),
+                    vote_average: String(userRating).substring(0, 2)
                 }
                 setMovie(movie)
             } catch (error) {
@@ -98,29 +102,33 @@ export function Movie() {
             setCrew(response.data.crew)
             setCast(response.data.cast)
           } catch (error) {
-                console.error("Error fetching Trailer:", error);
+                console.error("Error fetching Cast:", error);
           }
         };
 
-        const fetchReviews = async () => {
-          try {
-            const response = await api.get(`/movie/${id}/reviews?${apiKey}&language=pt-BR`);
-            console.log('response', response)
-          } catch (error) {
-                console.error("Error fetching Trailer:", error);
-          }
-        };
+        fetchDetailsMovie()
+            .then(fetchRecommendations)
+            .then(fetchTrailer)
+            .then(fetchCast)
+            .catch(error => {
+                console.error("Error during fetching:", error);
+            }
+        );
+        
+    }, [id]);
     
-        fetchDetailsMovie();
-        fetchRecommendations();
-        fetchTrailer();
-        fetchCast();
-        fetchReviews();
-      }, [id]);
-
-      const moviesRecommendationsWithPosters = movieRecommendations?.filter(movie => movie.poster_path);
+    const moviesRecommendationsWithPosters = movieRecommendations?.filter(movie => movie.poster_path);
       
-  return (
+    const uniqueCrewMembers: CrewType[] = [];
+    const seenIds = new Set();
+    crew?.forEach(({ id, name, job }) => {
+        if (!seenIds.has(id)) {
+            seenIds.add(id);
+            uniqueCrewMembers.push({ id, name, job });
+        }
+    });
+
+    return (
     <>
         <Header />
         <section className='bannerDetails'>
@@ -132,7 +140,7 @@ export function Movie() {
                     
                     <div className='container-circular'>
                         <div className="circular-progress">
-                            <span className='progress-value'>0%</span>
+                            <span className='progress-value'>{movie.vote_average}%</span>
                         </div>
                         <span>Avaliação dos usuários</span>
                     </div>
@@ -140,7 +148,7 @@ export function Movie() {
                     <h3>Sinopse</h3>
                     <p className='description'>{movie.overview}</p>
                     <div className="characters">
-                        {crew?.slice(0, 7).map(({id, name, job}) => (
+                        {uniqueCrewMembers?.slice(0, 6).map(({id, name, job}) => (
                             <div className='person' key={id}>
                                 <p className='name'>{name}</p>
                                 <p className='role'>{job}</p>
@@ -168,27 +176,22 @@ export function Movie() {
                 <iframe
                     width="800"
                     height="450"
-                    src={`https://www.youtube.com/embed/${movieTrailer.key}`}
-                    title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    src={`https://www.youtube.com/embed/${movieTrailer?.key}`}
+                    title="Trailer"
                 ></iframe>
             </section>
 
             <section className='recommendations'>
                 {!!moviesRecommendationsWithPosters.length ? (
                     <>
-                        <h2>Recomendações</h2>
+                        <h2 className='titleRecommendations'>Recomendações</h2>
                         <div className='recommendationsCards'>
                             <ul>
                                 {
                                     moviesRecommendationsWithPosters?.slice(0, 6).map(({ id, title, release_date, poster_path }) => (
                                         <li key={id}>
-                                            <Link to={`/movie/${id}`}>
-                                                <img src={imageUrl + poster_path} alt={title} />
-                                                <h2>{title}</h2>
-                                                <span>{format(new Date(release_date), 'dd MMM yyyy', { locale: pt })}</span>
-                                            </Link>
-                                        </li>            
+                                            <Card id={id} title={title} date={release_date} image={poster_path} />  
+                                        </li>         
                                     ))
                                 }
                             </ul>

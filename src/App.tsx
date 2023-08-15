@@ -1,14 +1,17 @@
 import { BrowserRouter } from 'react-router-dom'
 import { Router } from "./Router";
+import { FilterProvider } from './contexts';
 
 import './styles/global.scss'
 
 function App() {
 
   return (
-    <BrowserRouter>
-      <Router />
-    </BrowserRouter>
+    <FilterProvider>
+      <BrowserRouter>
+        <Router />
+      </BrowserRouter>
+    </FilterProvider>
   )
 }
 

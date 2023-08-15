@@ -1,14 +1,12 @@
 import './styles.scss'
 import { useState, useEffect } from 'react'
 import { api } from '../../services/api'
-import { Link } from 'react-router-dom'
 import { Header } from "../../components/Header";
-import { format } from 'date-fns';
-import pt from 'date-fns/locale/pt';
 import { Pagination } from '../../components/Pagination';
+import { Card } from '../../components/Card';
+import { useFilter } from '../../contexts';
 
 const apiKey = import.meta.env.VITE_API_KEY
-const imageUrl = import.meta.env.VITE_IMG
 
 type GenresType = {
   id: number
@@ -34,9 +32,9 @@ interface MoviesResultsType {
 
 
 export function Home() {
+  const { selectedGenres, setSelectedGenres, movies, setMovies } = useFilter();
+
   const [genres, setGenres] = useState([]);
-  const [selectedGenres, setSelectedGenres] = useState<number[]>([]);
-  const [movies, setMovies] = useState<MoviesResultsType[]>([])
   const [moviesSelected, setMoviesSelected] = useState<MoviesResultsType[]>([])
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1)
@@ -44,7 +42,6 @@ export function Home() {
   function handleCurrentPage(page: number) {
     setCurrentPage(page)
   }
-
 
   useEffect(() => {
     const fetchPopularMovies = async () => {
@@ -72,7 +69,7 @@ export function Home() {
 
   useEffect(() => {
       const filteredMovies = movies?.filter((movie) => movie.genre_ids.some((genreId) => selectedGenres.includes(genreId)))
-      
+
       setMoviesSelected(filteredMovies);
   }, [selectedGenres]);
 
@@ -107,37 +104,32 @@ export function Home() {
       </section>
       <main className='content'>
         {!movies.length && <span className='loading'>Carregando...</span>}
-          <div className='card'>
+          <div className='cards'>
             <ul>
                 {!moviesSelected.length && !selectedGenres.length && movies?.map(({ id, title, release_date, poster_path }) => (
-                    <li key={id}>
-                        <Link to={`movie/${id}`}>
-                            <img src={imageUrl + poster_path} alt={title} />
-                            <h2>{title}</h2>
-                            <span>{format(new Date(release_date), 'dd MMM yyyy', { locale: pt })}</span>
-                        </Link>
-                    </li>            
+                  <li key={id}>
+                    <Card id={id} title={title} date={release_date} image={poster_path} />      
+                  </li>     
                 ))}
 
                 {!!moviesSelected.length && moviesSelected?.map(({ id, title, release_date, poster_path }) => (
-                    <li key={id}>
-                        <Link to={`movie/${id}`}>
-                            <img src={imageUrl + poster_path} alt={title} />
-                            <h2>{title}</h2>
-                            <span>{format(new Date(release_date), 'dd MMM yyyy', { locale: pt })}</span>
-                        </Link>
-                    </li>            
+                  <li key={id}>
+                    <Card id={id} title={title} date={release_date} image={poster_path} /> 
+                  </li>          
                 ))}
 
                 {!moviesSelected.length && !!selectedGenres.length && (<h2>Não encontramos filme popular para esse gênero selecionado</h2>)}
+                
             </ul>
         </div>
       </main>
-      <Pagination 
-        handleCurrentPage={handleCurrentPage} 
-        currentPage={currentPage} 
-        totalPages={totalPages} 
-      />
+      {!selectedGenres.length && (
+        <Pagination 
+          handleCurrentPage={handleCurrentPage} 
+          currentPage={currentPage} 
+          totalPages={totalPages} 
+        />
+      )}
     </>
   )
 }
