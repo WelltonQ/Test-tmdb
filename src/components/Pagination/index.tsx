@@ -55,7 +55,7 @@ export function Pagination({handleCurrentPage, currentPage, totalPages}: Paginat
       };
   
   return (
-    <div className="pagination">
+    <div className='pagination'>
         {currentPage !== 1 && <button onClick={handleFirstPage} className='buttonPage'>Primeira</button>}
         {currentPage !== 1 && <button onClick={handlePreviousPage}>&lt;</button>}
         {renderPageNumbers()}

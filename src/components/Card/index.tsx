@@ -18,7 +18,7 @@ export function Card({id, title, image, date}: CardTypes) {
     <Link to={`/movie/${id}`} className='card'>
         <img src={imageUrl + image} alt={title} />
         <h2>{title}</h2>
-        <span>{date ? format(new Date(date), 'dd MMM yyyy', { locale: pt }) : ""}</span>
+        <span>{date ? format(new Date(date), 'dd MMM yyyy', { locale: pt }) : ''}</span>
     </Link>
   )
 }

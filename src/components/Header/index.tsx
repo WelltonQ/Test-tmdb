@@ -5,9 +5,9 @@ import { Link } from 'react-router-dom'
 export function Header() {
     return (
         <header>
-            <div className="content">
-                <Link to="/">
-                    <img src={logo} alt="Logotipo do site TMDB" />
+            <div className='content'>
+                <Link to='/'>
+                    <img src={logo} alt='Logotipo do site TMDB' />
                 </Link>
             </div>
         </header>

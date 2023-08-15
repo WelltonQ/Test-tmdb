@@ -1,7 +1,7 @@
 import './styles.scss'
-import { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react';
 import { api } from '../../services/api'
-import { Header } from "../../components/Header";
+import { Header } from '../../components/Header';
 import { Pagination } from '../../components/Pagination';
 import { Card } from '../../components/Card';
 import { useFilter } from '../../contexts';
@@ -50,7 +50,7 @@ export function Home() {
         setTotalPages(response.data.total_pages)
         setMovies(response.data.results);
       } catch (error) {
-        console.error("Error fetching popular movies:", error);
+        console.error('Error fetching popular movies:', error);
       }
     };
 
@@ -59,7 +59,7 @@ export function Home() {
         const response = await api.get(`/genre/movie/list?${apiKey}&language=pt-BR`);
         setGenres(response.data.genres);
       } catch (error) {
-        console.error("Error fetching genres:", error);
+        console.error('Error fetching genres:', error);
       }
     };
 
@@ -85,7 +85,7 @@ export function Home() {
     <>
       <Header />
       <section className='bannerHome'>
-        <div className="filters content">
+        <div className='filters content'>
           <h1>Milhões de filmes, séries e pessoas para descobrir. Explore já.</h1>
           <span>Filtre por:</span>
           <div className='buttonsFilters'>
@@ -93,10 +93,10 @@ export function Home() {
               <button 
                 key={genre.id} 
                 onClick={() => handleGenreToggle(genre.id)}
-                className={selectedGenres.includes(genre.id) ? "active" : "inactive"}
+                className={selectedGenres.includes(genre.id) ? 'active' : 'inactive'}
               >
                 {genre.name}
-                {selectedGenres.includes(genre.id) ? (<span className='badge'>x</span>) : "" }
+                {selectedGenres.includes(genre.id) ? (<span className='badge'>x</span>) : '' }
               </button>     
             ))}
           </div>
