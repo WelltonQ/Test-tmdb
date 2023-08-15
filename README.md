@@ -1,27 +1,65 @@
-# React + TypeScript + Vite
+<h1 align="center">
+   Teste frontend - Uhuu
+</h1>
+<p align="center">
+   <img width="200px" alt="Imagem demonstrativa Uhuu" src="https://github.com/WelltonQ/IgniteFeed/assets/12499627/bb455e80-b3dd-402c-8059-0c661a761291" />
+</p>
+<p align="center">
+  <a href="#page_facing_up-descrição">Descrição</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#-tecnologias">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#closed_book-executar">Executar</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#man-autor">Autor</a>
+</p>
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## :page_facing_up: Descrição
 
-Currently, two official plugins are available:
+O desafio proposto consiste em criar uma aplicação usando a API de filmes gratuita themoviedb em sua versão 3. Possui duas páginas: Home e Movie. 
+- A página Home é responsável por listar todos os filmes populares do dia, incluindo funcionalidades como filtros através do gênero selecionado e paginação para encontrar novos filmes. É possível clicar no filme para ser direcionado para a página de Movie.
+- A página Movie consiste em todos os detalhes sobre o filme selecionado, contém informações como titulo, data de lançamento, gêneros, duração, avaliação dos usuários, sinopse e equipe. Além disso, existe a seção do elenco original com foto e nome de cada, seção trailer com o vídeo e seção recomendações listando os filmes recomendados para o usuário.
+- A aplicação está responsiva para uso mobile, tablet e desktop.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🛠 Tecnologias
 
-## Expanding the ESLint configuration
+Este projeto foi desenvolvido com as seguintes tecnologias
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- [React.js](https://pt-br.reactjs.org/)
+- [Sass](https://sass-lang.com/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Vite](https://vitejs.dev/)
+- [Axios](https://axios-http.com/ptbr/docs/intro/)
+- [TMDB](https://www.themoviedb.org/?language=pt-BR/)
 
-- Configure the top-level `parserOptions` property like this:
+## :closed_book: Executar
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+### Clone este repositório.
+
+```bash
+## Frontend
+
+# Entre na pasta
+$ cd Test-tmdb
+
+# Instale as dependências
+$ yarn
+
+# Execute aplicação
+$ yarn dev
+
+```
+## 💾 Variáveis de Ambiente
+
+Para executar este projeto, você precisará adicionar as seguintes variáveis de ambiente ao seu `.env`:
+
+```bash
+VITE_API_KEY=api_key=b5e87953700c598f59d927b45069a554
+VITE_API=https://api.themoviedb.org/3/
+VITE_IMG=https://image.tmdb.org/t/p/w500/
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+Obs: A key `VITE_API_KEY=api_key` é a key que foi gerado na API TMDB, essa key ficará disponível temporariamente, depois irei alterar. Surgiro que faça o cadastro gratuito no site [TMDB](https://www.themoviedb.org/?language=pt-BR) e gere uma nova key.
+
+---
+
+## :man: Autor
+
+✔ By [Wellton Quirino](https://www.linkedin.com/in/welltonquirino/)
